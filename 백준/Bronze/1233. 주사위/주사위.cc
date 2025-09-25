@@ -21,22 +21,15 @@ int main() {
     }
   }
 
-  int count = 0;
-  set<int> maxval;
+  int count = 0, maxval = 0;
   for (auto &p : freq) {
     
-    // 케이스 분류
-    if (p.second > count) {
+    // 케이스 분류 없이
+    if (p.second > count || (p.second == count && p.first < maxval)) {
       count = p.second;
-      maxval.clear();
-      maxval.insert(p.first);
-    }
-    else if (p.second ==  count) {
-      maxval.insert(p.first);
+      maxval = p.first;
     }
   }
-
-  cout << *maxval.begin() << endl; //이터레이터
-  
+  cout << maxval << endl;
   return 0;
 }
