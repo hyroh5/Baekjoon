@@ -1,23 +1,22 @@
 #include <iostream>
 using namespace std;
 
+int gcd(int a, int b) {
+  if(a%b == 0) return b;
+  return gcd(b, a%b);
+}
+
+int lcm(int a, int b) {
+  return a*b / gcd(a, b);
+}
+
 int main() {
   int a, b;
   int m, n;
   cin >> a >> b;
 
-  for (int i=min(a, b); i>=1; i--) {
-    if (a%i == 0 && b%i == 0) {
-      m = i;
-      break;
-    }
-  }
-  for (int i=max(a, b); i<=a*b; i++) {
-    if (i%a == 0 && i%b == 0) {
-      n = i;
-      break;
-    }
-  }
+  m = gcd(a, b);
+  n = lcm(a, b);
   
   cout << m << '\n' << n << endl;
 
